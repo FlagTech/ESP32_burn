@@ -30,7 +30,7 @@ set /p port="輸入連接埠 (輸入 q 離開)："
 if "%port%"=="q" goto end
 
 :next
-esptool.exe --chip esp32 --port COM13 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x10000 %fname%
+esptool.exe --chip esp32 --port %port% --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x10000 %fname%
 if errorlevel 1 (
     set /p dummy="！！！燒錄失敗, 要再試一次請直接按 Enter... (輸入 q 離開)"
 ) else (
